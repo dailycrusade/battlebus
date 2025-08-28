@@ -59,12 +59,12 @@
 
     <div class="section">
       <h3>Contact</h3>
-      <p>Text Steve at <span id="phone"></span> to reserve or ask questions.</p>
+      <p>Text Steve at <a href="#" id="smsLink"></a> to reserve or ask questions.</p>
       <script>
-        const part1 = "402";
-        const part2 = "215";
-        const part3 = "9944";
-        document.getElementById("phone").textContent = part1 + "-" + part2 + "-" + part3;
+        const p1 = "402", p2 = "215", p3 = "9944";
+        const full = p1 + "-" + p2 + "-" + p3;
+        document.getElementById("smsLink").href = "sms:" + p1 + p2 + p3;
+        document.getElementById("smsLink").textContent = full;
       </script>
     </div>
 
