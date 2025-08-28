@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Battle Bus – Miller's Garage</title>
+  <style>
+    body { font-family: sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1, h2 { color: #333; }
+    img { max-width: 100%; height: auto; margin-bottom: 1rem; border-radius: 8px; }
+    .section { margin-bottom: 2rem; }
+    a.button { display: inline-block; margin-top: 1rem; background: #333; color: white; padding: 0.75rem 1.25rem; text-decoration: none; border-radius: 5px; }
+    iframe { border: none; width: 100%; height: 600px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>The Battle Bus</h1>
+    <h2>Offered by Miller's Garage</h2>
+
+    <div class="section">
+      <img src="battle-bus-front.jpg" alt="Front view of The Battle Bus">
+      <img src="battle-bus-interior.jpg" alt="Interior view of The Battle Bus">
+      <img src="battle-bus-side.jpg" alt="Side door view of The Battle Bus">
+      <img src="battle-bus-rear.jpg" alt="Rear cargo view of The Battle Bus">
+      <p>This is our 2024 Ford Transit T-350 XLT — affectionately known as <strong>The Battle Bus</strong>. It seats up to 12 people with room in the back for luggage. It’s perfect for family road trips, group outings, airport runs, youth events, and hauling gear.</p>
+      <p>There’s a <strong>flat daily fee</strong> for personal use, or it’s <strong>free for ministry purposes</strong>. Just check the availability calendar below and reach out if it would be a help for your event or group.</p>
+      <p><strong>Insurance note:</strong> Our policy excludes borrowed or rented use, so you’ll need to confirm that your personal auto insurance covers non-owned vehicles. We’ll send over a quick agreement to sign before you hit the road.</p>
+    </div>
+
+    <div class="section">
+      <h3>Contact</h3>
+      <p>Text Steve at <span id="phone"></span> to reserve or ask questions.</p>
+      <script>
+        const part1 = "402";
+        const part2 = "215";
+        const part3 = "9944";
+        document.getElementById("phone").textContent = part1 + "-" + part2 + "-" + part3;
+      </script>
+    </div>
+
+    <div class="section">
+      <h3>Borrower Agreement</h3>
+      <a class="button" href="Friendly_Vehicle_Use_Agreement.pdf" download>Download Agreement</a>
+    </div>
+
+    <div class="section">
+      <h3>Availability Calendar</h3>
+      <iframe src="https://calendar.google.com/calendar/embed?src=1e6c199bdf4a674639beac0486a857d41bb4db04f1e4e8763ad67fa2fe9a9e0a%40group.calendar.google.com&ctz=America%2FChicago"></iframe>
+    </div>
+  </div>
+</body>
+</html>
