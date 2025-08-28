@@ -8,10 +8,21 @@
     body { font-family: sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
     .container { max-width: 800px; margin: 0 auto; padding: 2rem; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     h1, h2 { color: #333; }
-    img { max-width: 100%; height: auto; margin-bottom: 1rem; border-radius: 8px; }
     .section { margin-bottom: 2rem; }
+    .thumbnail-container { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .thumbnail-container img { width: 180px; height: auto; cursor: pointer; border-radius: 5px; transition: transform 0.2s; }
+    .thumbnail-container img:hover { transform: scale(1.05); }
     a.button { display: inline-block; margin-top: 1rem; background: #333; color: white; padding: 0.75rem 1.25rem; text-decoration: none; border-radius: 5px; }
     iframe { border: none; width: 100%; height: 600px; }
+
+    /* Modal Styles */
+    .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+    .modal-content { margin: 5% auto; display: flex; align-items: center; justify-content: center; max-width: 90%; height: auto; position: relative; }
+    .modal-content img { max-width: 100%; max-height: 80vh; }
+    .close, .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; padding: 1rem; user-select: none; }
+    .close { top: 10px; right: 20px; transform: none; font-size: 2rem; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
   </style>
 </head>
 <body>
@@ -20,13 +31,30 @@
     <h2>Offered by Miller's Garage</h2>
 
     <div class="section">
-      <img src="battle-bus-front.jpg" alt="Front view of The Battle Bus">
-      <img src="battle-bus-interior.jpg" alt="Interior view of The Battle Bus">
-      <img src="battle-bus-side.jpg" alt="Side door view of The Battle Bus">
-      <img src="battle-bus-rear.jpg" alt="Rear cargo view of The Battle Bus">
       <p>This is our 2024 Ford Transit T-350 XLT — affectionately known as <strong>The Battle Bus</strong>. It seats up to 12 people with room in the back for luggage. It’s perfect for family road trips, group outings, airport runs, youth events, and hauling gear.</p>
       <p>There’s a <strong>flat daily fee</strong> for personal use, or it’s <strong>free for ministry purposes</strong>. Just check the availability calendar below and reach out if it would be a help for your event or group.</p>
       <p><strong>Insurance note:</strong> Our policy excludes borrowed or rented use, so you’ll need to confirm that your personal auto insurance covers non-owned vehicles. We’ll send over a quick agreement to sign before you hit the road.</p>
+    </div>
+
+    <div class="section thumbnail-container">
+      <img src="battle-bus-front.jpg" alt="Front view" onclick="openModal(0)">
+      <img src="battle-bus-interior.jpg" alt="Interior view" onclick="openModal(1)">
+      <img src="battle-bus-side.jpg" alt="Side view" onclick="openModal(2)">
+      <img src="battle-bus-rear.jpg" alt="Rear view" onclick="openModal(3)">
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="Expanded view">
+      </div>
+      <span class="next" onclick="changeSlide(1)">&#10095;</span>
+    </div>
+
+    <div class="section">
+      <h3>Availability Calendar</h3>
+      <iframe src="https://calendar.google.com/calendar/embed?src=1e6c199bdf4a674639beac0486a857d41bb4db04f1e4e8763ad67fa2fe9a9e0a%40group.calendar.google.com&ctz=America%2FChicago"></iframe>
     </div>
 
     <div class="section">
@@ -44,11 +72,38 @@
       <h3>Borrower Agreement</h3>
       <a class="button" href="Friendly_Vehicle_Use_Agreement.pdf" download>Download Agreement</a>
     </div>
-
-    <div class="section">
-      <h3>Availability Calendar</h3>
-      <iframe src="https://calendar.google.com/calendar/embed?src=1e6c199bdf4a674639beac0486a857d41bb4db04f1e4e8763ad67fa2fe9a9e0a%40group.calendar.google.com&ctz=America%2FChicago"></iframe>
-    </div>
   </div>
+
+  <script>
+    const images = [
+      "battle-bus-front.jpg",
+      "battle-bus-interior.jpg",
+      "battle-bus-side.jpg",
+      "battle-bus-rear.jpg"
+    ];
+    let currentSlide = 0;
+
+    function openModal(index) {
+      currentSlide = index;
+      document.getElementById("modalImage").src = images[currentSlide];
+      document.getElementById("imageModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+
+    function changeSlide(direction) {
+      currentSlide = (currentSlide + direction + images.length) % images.length;
+      document.getElementById("modalImage").src = images[currentSlide];
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("imageModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
